@@ -21,7 +21,7 @@ app.use(
   })
 );
 app.use(json({ limit: "50mb" }));
-var url = process.env.MONGI_URL;//"mongodb://localhost:27017/notebook";
+var url = "mongodb+srv://ggadekar87:Ganesh1987@cluster0.5hbgj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";//process.env.MONGI_URL;//"mongodb://localhost:27017/notebook";
 import { MongoClient } from "mongodb";
 import mongodb from "mongodb";
 import sgMail from "@sendgrid/mail";
