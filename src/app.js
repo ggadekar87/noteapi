@@ -1,9 +1,12 @@
-//https://www.mongodb.com/docs/drivers/node/current/
+//https://www.mongodb.com/docs
+// /drivers/node/current/
+import { config } from "dotenv";
+config();
 import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 var app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 app.use(cors());
 import pkg from "body-parser";
 const { json, urlencoded } = pkg;
@@ -18,7 +21,7 @@ app.use(
   })
 );
 app.use(json({ limit: "50mb" }));
-var url = "mongodb://localhost:27017/notebook";
+var url = process.env.MONGI_URL;//"mongodb://localhost:27017/notebook";
 import { MongoClient } from "mongodb";
 import mongodb from "mongodb";
 import sgMail from "@sendgrid/mail";
@@ -35,6 +38,7 @@ import {
 
 import nodemailer from "nodemailer";
 import sendgridTransport from "nodemailer-sendgrid-transport";
+import { configDotenv } from "dotenv";
 const transport = nodemailer.createTransport(
   sendgridTransport({
     auth: {
@@ -43,6 +47,11 @@ const transport = nodemailer.createTransport(
     },
   })
 );
+app.get("/gettest", async function (req, res) {
+
+  res.send(["One", "Two", "Three"]);
+});
+
 
 app.get("/", async function (req, res) {
   const query = { email: "aa@gmail.com" };
