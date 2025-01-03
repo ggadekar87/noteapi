@@ -34,7 +34,7 @@ import {
   ServiceErrorResponse,
   ServiceResponse,
   ServiceResponseOK,
-} from "./Common.js";
+} from "./src/Common.js";
 
 import nodemailer from "nodemailer";
 import sendgridTransport from "nodemailer-sendgrid-transport";
