@@ -48,8 +48,24 @@ const transport = nodemailer.createTransport(
   })
 );
 app.get("/gettest", async function (req, res) {
-
-  res.send(["One", "Two", "Three"]);
+  const uri = "mongodb+srv://ggadekar87:Ganesh1987@cluster0.5hbgj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  // Create a new MongoClient
+  const client = new MongoClient(uri, {
+  });
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    res.send(["One", "Two", "You successfully connected to MongoDB"]);
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } catch (error) {
+    res.send(["One", error]);
+  }
+  finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
 });
 
 
